@@ -3,6 +3,7 @@
   // change to your server url
   const SERVER_URL = 'http://localhost:2525'
   const APP_ID = chrome.runtime.id
+  var NOW_POSITON = 0
   const APP_VERSION = chrome.runtime.getManifest().version
 
   let socket = null
@@ -58,8 +59,14 @@
     t.style.zIndex = 2147483647
 
     t.innerText = msg.body
+    const t2 = document.createElement('div')
+    t2.style.left = window.innerWidth-100 + 'px'
+    t2.style.top = NOW_POSITON + 'px'
+    NOW_POSITON = NOW_POSITON + 40
+    document.body.appendChild(t2)
 
     document.body.appendChild(t)
+    console.log(document.body)
 
     const effect = [{
       left: window.innerWidth + 'px'
